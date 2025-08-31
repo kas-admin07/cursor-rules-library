@@ -1,0 +1,68 @@
+---
+description: "Применяется при работе с Telegram ботами, aiogram или разработке ботов для мессенджеров. Срабатывает на файлах связанных с ботами и соответствующих обсуждениях."
+globs: bot.py, telegram_bot.py, handlers/**/*
+alwaysApply: false
+---
+
+# Разработка Telegram ботов
+
+## Структура бота с aiogram
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters import Command
+import asyncio
+
+bot = Bot(token="YOUR_BOT_TOKEN")
+dp = Dispatcher()
+
+@dp.message(Command("start"))
+async def start_handler(message: types.Message):
+await message.answer("Привет! Я бот-помощник.")
+
+async def main():
+await dp.start_polling(bot)
+
+if name == "main":
+asyncio.run(main())
+
+
+## Обработчики сообщений
+- Использовать Command фильтры для команд
+- Text фильтры для текстовых сообщений  
+- Управление состоянием для диалогов
+- Middleware для общей логики
+
+## Паттерны бота
+- Разделять обработчики по функциям
+- Использовать клавиатуры для взаимодействия с пользователем
+- Обрабатывать ошибки корректно
+- Логировать взаимодействия пользователей
+
+## Организация файлов
+bot/
+├── bot.py # Основной файл бота
+├── handlers/ # Обработчики сообщений
+│ ├── start.py
+│ └── help.py
+├── keyboards/ # Inline/reply клавиатуры
+└── middleware/ # Middleware бота
+
+
+## Безопасность
+- Хранить токен бота в переменных окружения
+- Валидировать пользовательский ввод
+- Ограничение частоты команд
+- Обрабатывать неавторизованный доступ
+
+<example>
+Создание обработчика команды:
+• Использовать @dp.message(Command("command"))
+• Валидировать права пользователя при необходимости
+• Предоставлять полезные сообщения об ошибках
+• Логировать важные действия
+</example>
+
+<example type="invalid">
+Хардкодинг токена бота в коде
+Отсутствие обработки ошибок для API вызовов
+Блокирующие операции в обработчиках
+</example>
