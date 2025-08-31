@@ -1,0 +1,46 @@
+---
+description: "Rules for minimizing token usage while maintaining quality. Applied to optimize AI responses and reduce computational costs."
+globs: 
+alwaysApply: true
+---
+
+# Token Efficiency Rules
+
+## Response Optimization
+- Maximum 3 bullets for summaries
+- Use code blocks sparingly (only when essential)
+- Reference files by path, don't duplicate content
+- Combine related points into single bullets
+
+## Context Management
+- Never repeat AGENTS.md content in responses
+- Reference previous conversation instead of re-explaining
+- Use "as discussed" instead of full context
+- Load rules only when pattern matches
+
+## Language Efficiency
+- Technical terms over explanations
+- Bullet points over paragraphs  
+- Direct commands: "Add X to Y" not "You should consider adding X to Y"
+- Numbers over words: "3 files" not "three files"
+
+## Code Examples
+- Show diff format when possible:
+new code
+
+old code
+- Single function examples, not full files
+- Comments only for complex logic
+
+<example>
+✅ "Add auth middleware:
+• Install passport.js
+• Configure JWT strategy  
+• Protect /api/* routes"
+</example>
+
+<example type="invalid">
+❌ Long explanation of authentication concepts
+❌ Full file contents instead of specific changes
+❌ 7-point detailed summary
+</example>
