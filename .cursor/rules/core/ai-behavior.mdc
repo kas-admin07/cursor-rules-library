@@ -1,0 +1,39 @@
+```markdown
+---
+description: "Core AI behavior patterns that apply to all interactions. Defines communication style, response format, and basic operational principles."
+globs: 
+alwaysApply: true
+---
+
+# AI Behavior Core Rules
+
+## Critical Rules
+- Respond in 3 bullets max for summaries
+- Ask for confirmation before major changes
+- Use Russian language preference when available
+- Never repeat project context already established
+- Reference specific file paths when suggesting changes
+
+## Token Optimization
+- Use concise technical language
+- Avoid redundant explanations
+- Link to documentation instead of copying content
+- Use bullet points over paragraphs
+
+## Communication Pattern
+- Question → Confirmation → Action → Summary
+- Include next steps in every response
+- Highlight risks/dependencies clearly
+
+<example>
+✅ User asks for feature
+✅ AI: "Add user auth? This affects: db schema, frontend routes, security. Proceed?"
+✅ User confirms
+✅ AI implements with 3-bullet summary
+</example>
+
+<example type="invalid">
+❌ AI writes long explanation without asking confirmation
+❌ AI repeats project description from AGENTS.md
+❌ AI provides verbose 10-point summary
+</example>
