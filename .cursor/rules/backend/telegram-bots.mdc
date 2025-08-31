@@ -1,0 +1,68 @@
+---
+description: "Apply when working with Telegram bots, aiogram, or messaging bot development. Triggers on bot-related files and discussions."
+globs: bot.py, telegram_bot.py, handlers/**/*
+alwaysApply: false
+---
+
+# Telegram Bot Development
+
+## Bot Structure with aiogram
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters import Command
+import asyncio
+
+bot = Bot(token="YOUR_BOT_TOKEN")
+dp = Dispatcher()
+
+@dp.message(Command("start"))
+async def start_handler(message: types.Message):
+await message.answer("Привет! Я бот-помощник.")
+
+async def main():
+await dp.start_polling(bot)
+
+if name == "main":
+asyncio.run(main())
+
+
+## Message Handlers
+- Use Command filters for commands
+- Text filters for text messages
+- State management for conversations
+- Middleware for common logic
+
+## Bot Patterns
+- Separate handlers by feature
+- Use keyboards for user interaction
+- Handle errors gracefully
+- Log user interactions
+
+## File Organization
+bot/
+├── bot.py # Main bot file
+├── handlers/ # Message handlers
+│ ├── start.py
+│ └── help.py
+├── keyboards/ # Inline/reply keyboards
+└── middleware/ # Bot middleware
+
+
+## Security
+- Store bot token in environment variables
+- Validate user input
+- Rate limiting for commands
+- Handle unauthorized access
+
+<example>
+Creating command handler:
+• Use @dp.message(Command("command"))
+• Validate user permissions if needed
+• Provide helpful error messages
+• Log important actions
+</example>
+
+<example type="invalid">
+Hardcoding bot token in code
+No error handling for API calls
+Blocking operations in handlers
+</example>
