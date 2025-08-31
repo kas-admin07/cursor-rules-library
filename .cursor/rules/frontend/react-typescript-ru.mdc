@@ -1,0 +1,63 @@
+---
+description: "Применяется при работе с React, TypeScript или frontend файлами. Срабатывает на файлах .tsx, .ts, .jsx, .js и обсуждениях связанных с React."
+globs: *.tsx, *.ts, *.jsx, *.js, src/components/**/*
+alwaysApply: false
+---
+
+# Стандарты React TypeScript
+
+## Структура компонентов
+- Функциональные компоненты с TypeScript интерфейсами
+- Интерфейс Props выше компонента
+- Экспорт по умолчанию с displayName
+- Последовательное именование файлов: PascalCase.tsx
+
+## Паттерны кода
+interface UserCardProps {
+user: User;
+onClick?: () => void;
+}
+
+export default function UserCard({ user, onClick }: UserCardProps) {
+return (
+<div className="user-card" onClick={onClick}>
+<h3>{user.name}</h3>
+</div>
+);
+}
+
+UserCard.displayName = 'UserCard';
+
+## Управление состоянием
+- useState для локального состояния
+- Кастомные хуки для общей логики
+- Context для состояния всего приложения
+- Избегать передачи пропсов через много уровней
+
+## Производительность
+- Использовать React.memo для дорогих компонентов
+- useMemo для дорогих вычислений
+- useCallback для обработчиков событий, передаваемых детям
+- Ленивая загрузка для компонентов маршрутов
+
+## Организация файлов
+src/
+├── components/
+│ ├── ui/ # Переиспользуемые UI компоненты
+│ └── features/ # Компоненты специфичные для функций
+├── hooks/ # Кастомные хуки
+├── types/ # Определения типов TypeScript
+└── utils/ # Вспомогательные функции
+
+<example>
+Создание нового компонента:
+• Сначала определить интерфейс Props
+• Использовать функциональный компонент с правильной типизацией
+• Добавить displayName для отладки
+</example>
+
+<example type="invalid">
+Использование типа any вместо правильных интерфейсов
+Классовые компоненты для нового кода
+</example>
+
