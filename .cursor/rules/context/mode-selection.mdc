@@ -1,0 +1,63 @@
+---
+description: "Apply when user mentions MVP vs Production mode or asks about development approach. Determines if fast iteration (MVP) or robust implementation (Production) is needed. Critical for setting correct validation, testing, and documentation levels."
+globs: 
+alwaysApply: false
+---
+
+# Development Mode Selection
+
+## Mode Detection
+Load this rule when user mentions:
+- "MVP", "quickly", "prototype", "demo"
+- "production", "prod", "release", "deploy"
+- "testing", "validation", "security"
+
+## MVP Mode Rules
+- Minimal error handling (try/except basics)
+- Skip comprehensive tests (core functionality only)
+- Basic logging (console.log/print statements)
+- Simplified validation (required fields only)
+- Fast UI (functional over polished)
+
+## Production Mode Rules
+- Comprehensive error handling with proper HTTP codes
+- Full test coverage (unit + integration)
+- Structured logging with levels
+- Input validation + sanitization
+- Security headers, rate limiting
+- Code documentation
+
+MVP approach
+@app.route('/api/users', methods=['POST'])
+def create_user():
+data = request.json
+user = User(name=data['name'])
+db.save(user)
+return {'id': user.id}
+
+Production approach
+@app.route('/api/users', methods=['POST'])
+@rate_limit(5, per_minute=True)
+def create_user():
+try:
+data = validate_user_data(request.json)
+user = User(**data)
+db.save(user)
+logger.info(f"User created: {user.id}")
+return {'id': user.id}, 201
+except ValidationError as e:
+logger.warning(f"Invalid user data: {e}")
+return {'error': str(e)}, 400
+
+
+<example>
+User: "Need to quickly build API for chat"
+AI loads MVP mode: basic Flask routes, minimal validation
+</example>
+
+<example type="invalid">
+User asks for MVP but AI suggests comprehensive testing setup
+</example>
+
+
+## Implementation Pattern
