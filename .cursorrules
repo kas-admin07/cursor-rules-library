@@ -1,0 +1,18 @@
+include:
+  - .cursor/rules/core/*.mdc
+  - .cursor/rules/context/*.mdc
+  - .cursor/rules/frontend/*.mdc
+  - .cursor/rules/backend/*.mdc
+  - .cursor/rules/architecture/*.mdc
+  - .cursor/rules/testing/*.mdc
+  - .cursor/rules/legacy/*.mdc
+  - .cursor/rules/integration/*.mdc
+hierarchy:
+  - core
+  - context
+  - frontend
+  - backend
+  - architecture
+  - testing
+  - legacy
+  - integration
