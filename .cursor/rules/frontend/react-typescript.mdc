@@ -1,0 +1,63 @@
+---
+description: "Apply when working with React, TypeScript, or frontend files. Triggers on .tsx, .ts, .jsx, .js files and React-related discussions."
+globs: *.tsx, *.ts, *.jsx, *.js, src/components/**/*
+alwaysApply: false
+---
+
+# React TypeScript Standards
+
+## Component Structure
+- Functional components with TypeScript interfaces
+- Props interface above component
+- Default exports with displayName
+- Consistent file naming: PascalCase.tsx
+
+## Code Patterns
+interface UserCardProps {
+user: User;
+onClick?: () => void;
+}
+
+export default function UserCard({ user, onClick }: UserCardProps) {
+return (
+<div className="user-card" onClick={onClick}>
+<h3>{user.name}</h3>
+</div>
+);
+}
+
+UserCard.displayName = 'UserCard';
+
+
+## State Management
+- useState for local state
+- Custom hooks for shared logic
+- Context for app-wide state
+- Avoid prop drilling
+
+## Performance
+- Use React.memo for expensive components
+- useMemo for expensive calculations
+- useCallback for event handlers passed to children
+- Lazy loading for route components
+
+## File Organization
+src/
+├── components/
+│ ├── ui/ # Reusable UI components
+│ └── features/ # Feature-specific components
+├── hooks/ # Custom hooks
+├── types/ # TypeScript type definitions
+└── utils/ # Helper functions
+
+<example>
+Creating new component:
+• Define Props interface first
+• Use functional component with proper typing
+• Add displayName for debugging
+</example>
+
+<example type="invalid">
+Using any type instead of proper interfaces
+Class components for new code
+</example>
